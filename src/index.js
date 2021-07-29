@@ -1,57 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Product from "./Product";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-import "./styles.css";
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-
-
-class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      error: null,
-    };
-  }
-
-
-componentDidMount() {
-    fetch("https://fakestoreapi.com/products")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            items: result.items
-          });
-        },
-        (error) => {
-          this.setState({
-       
-            error
-          });
-        }
-      )
-  }
-  
-  render() {
-    const { items } = this.state;
-    console.log(error)
-    return (
-      <div>
-        <ul>
-          {items.map(product => (
-            <Product
-              key={product.id}
-              details={product}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
